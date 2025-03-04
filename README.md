@@ -37,4 +37,4 @@ Feel free to contribute by submitting pull requests or raising issues for improv
 
 ---
 ### Contact
-For questions or suggestions, please reach out to the project maintainers.
+For questions or suggestions, please reach out to https://github.com/Kuvelet
