@@ -22,7 +22,7 @@ This project analyzes the financial impact of a recent price discount on a bulk 
 ## How to Use
 1. Clone this repository.
 2. Open the Power Query script in Power BI or Excel.
-3. Duplicate the steps for your own needs
+3. Duplicate the steps for your own needs.
 
 ## Expected Outcome
 - A clear summary of financial impact per customer.
@@ -37,4 +37,4 @@ Feel free to contribute by submitting pull requests or raising issues for improv
 
 ---
 ### Contact
-For questions or suggestions, please reach out to <a h ref="https://github.com/Kuvelet">
+For questions or suggestions, please reach out to [Kuvelet](https://github.com/Kuvelet).
