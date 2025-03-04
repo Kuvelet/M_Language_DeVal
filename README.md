@@ -18,6 +18,7 @@ This project analyzes the financial impact of a recent price discount on a bulk 
 - **Power Query (M Language)**: For data transformation and analysis.
 - **Excel / Power BI**: To visualize and report findings.
 - **SQL (Optional)**: If needed, for querying historical sales and price data.
+![Screenshot 2025-03-04 185651](https://github.com/user-attachments/assets/6385b7a1-56bd-4649-8d71-29af0945741b)
 
 ## How to Use
 1. Clone this repository.
