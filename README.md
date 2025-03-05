@@ -15,7 +15,9 @@ This project analyzes the financial impact of a recent price discount on a bulk 
 **1.** 2018-2023 Sales Data : "sales_2018-2023.csv" file containing detailed accounting information about each sale made in years 2018-2023 by the company. The dataset includes columns for `Customer ID`, `Customer Name`, `Invoice/CM #`, `Apply to Invoice Number`, `Credit Memo`, `Progress Billing Invoice`, `Date`, `Ship By`, `Quote`, `Quote #`, `Quote Good Thru Date`, `Drop Ship`, `Ship to Name`, `Ship to Address-Line One`, `Ship to Address-Line Two`, `Ship to City`, `Ship to State`, `Ship to Zipcode`, `Ship to Country`, `Customer PO`, `Ship Via`, `Ship Date`, `Date Due`, `Discount Amount`, `Discount Date`, `Displayed Terms`, `Sales Representative ID`, `Accounts Receivable Account`, `Accounts Receivable Amount`, `Sales Tax ID`, `Invoice Note`, `Note Prints After Line Items`, `Statement Note`, `Stmt Note Prints Before Ref`, `Internal Note`, `Beginning Balance Transaction`, `AR Date Cleared in Bank Rec`, `Number of Distributions`, `Invoice/CM Distribution`, `Apply to Invoice Distribution`, `Apply To Sales Order`, `Apply to Proposal`, `Item ID`, `Quantity`, `SO/Proposal Number`, `Serial Number`, `SO/Proposal Distribution`, `G/L Account`, `GL Date Cleared in Bank Rec`, `Unit Price`, `Tax Type`, `UPC / SKU`, `Weight`, `Amount`, `Inventory Account`, `Inv Acnt Date Cleared In Bank Rec`, `Cost of Sales Account`, `COS Acnt Date Cleared In Bank Rec`, `U/M ID`, `U/M No. of Stocking Units`, `Stocking Quantity`, `Stocking Unit Price`, `Cost of Sales Amount`, `Job ID`, `Sales Tax Agency ID`, `Transaction Period`, `Transaction Number`, `Receipt Number`, `Return Authorization`, `Voided by Transaction`, `Retainage Percent`, `Recur Number`, `Recur Frequency`, `Description`
 
 **2.** 2024 Sales Data : "sales_2024.csv" file containing detailed accounting information about each sale made in 2024 by the company
+
 **3.** 2024 Sales Data : "sales_2025.csv" file containing detailed accounting information about each sale made in 2025 by the company
+
 **4.** Customer Inventory Data : The file "flow.xlsx" contains customer inventory data, including details such as inventory count, previous price, discounted price, and various inventory flow metrics. The dataset includes columns for `Line Code`, `Part Number`, `Short Description`, `In Stock Quantity`, `Old Price`, `New Price`, `Price Difference`, `Percentage Difference`, `Old Inventory Flow`, `New Inventory Flow`, `Inventory Difference`, and `Percentage Difference`.
 
 ### Tools
@@ -232,7 +234,67 @@ let
 in
     ConcatenatedPartCumSum
 ```
+**2.** This Power Query (M) script performs a Left Outer Join between Flow and Flow_Deval_Project using "Concatenated_Part&Stock" from Flow and "Concatenated_Part&CumSum" from Flow_Deval_Project, extracts relevant sales data, renames key cumulative sales columns for clarity, and removes unnecessary fields to create a clean dataset
 
+```powerquery
+let
+    // Step 1: Perform a Left Outer Join between "Flow" and "Flow_Deval_Project"
+    // - Merging on "Concatenated_Part&Stock" from "Flow" and "Concatenated_Part&CumSum" from "Flow_Deval_Project"
+    Source = Table.NestedJoin(
+        Flow, 
+        {"Concatenated_Part&Stock"}, 
+        Flow_Deval_Project, 
+        {"Concatenated_Part&CumSum"}, 
+        "Flow_Deval_Project", 
+        JoinKind.LeftOuter
+    ),
+
+    // Step 2: Expand the "Flow_Deval_Project" table to extract relevant columns
+    ExpandedFlowDevalProject = Table.ExpandTableColumn(
+        Source, 
+        "Flow_Deval_Project", 
+        {
+            "Part #", "S_.Customer ID", "S_.Invoice/CM #", "S_.Credit Memo", "S_.Date", "S_.Customer PO",
+            "S_.Sales_Quantity", "S_.Sales_Unit Price", "Original_Index", "Sales_Qty_(1)", "Sales_Amount_(1)",
+            "Index", "Cumulative Sales_Qty_(1)", "Cumulative Sales_Amount_(1)", "Concatenated_Part&CumSum"
+        },
+        {
+            "Flow_Deval_Project.Part #", "Flow_Deval_Project.S_.Customer ID", "Flow_Deval_Project.S_.Invoice/CM #",
+            "Flow_Deval_Project.S_.Credit Memo", "Flow_Deval_Project.S_.Date", "Flow_Deval_Project.S_.Customer PO",
+            "Flow_Deval_Project.S_.Sales_Quantity", "Flow_Deval_Project.S_.Sales_Unit Price",
+            "Flow_Deval_Project.Original_Index", "Flow_Deval_Project.Sales_Qty_(1)", "Flow_Deval_Project.Sales_Amount_(1)",
+            "Flow_Deval_Project.Index", "Flow_Deval_Project.Cumulative Sales_Qty_(1)", 
+            "Flow_Deval_Project.Cumulative Sales_Amount_(1)", "Flow_Deval_Project.Concatenated_Part&CumSum"
+        }
+    ),
+
+    // Step 3: Rename selected columns for better readability
+    RenamedColumns = Table.RenameColumns(
+        ExpandedFlowDevalProject,
+        {
+            {"Flow_Deval_Project.Cumulative Sales_Amount_(1)", "USPAAU_Cumulative_Sales_Amount"},
+            {"Flow_Deval_Project.Cumulative Sales_Qty_(1)", "USPAAU_Cumulative_Sales_Qty"}
+        }
+    ),
+
+    // Step 4: Remove unnecessary columns to clean up the dataset
+    RemovedColumns = Table.RemoveColumns(
+        RenamedColumns, 
+        {
+            "Line Code", "Short Description", "Old Price", "New Price", "Difference", "% Difference", 
+            "Old Inventory Flow", "New Inventory Flow", "Difference_1", "% Difference_2", "Concatenated_Part&Stock",
+            "Flow_Deval_Project.Part #", "Flow_Deval_Project.S_.Customer ID", "Flow_Deval_Project.S_.Invoice/CM #", 
+            "Flow_Deval_Project.S_.Credit Memo", "Flow_Deval_Project.S_.Date", "Flow_Deval_Project.S_.Customer PO", 
+            "Flow_Deval_Project.S_.Sales_Quantity", "Flow_Deval_Project.S_.Sales_Unit Price", 
+            "Flow_Deval_Project.Original_Index", "Flow_Deval_Project.Sales_Qty_(1)", 
+            "Flow_Deval_Project.Sales_Amount_(1)", "Flow_Deval_Project.Index", 
+            "Flow_Deval_Project.Concatenated_Part&CumSum"
+        }
+    )
+
+in
+    RemovedColumns
+```
 ## Methodology
 1. **Data Collection**: The customers provided their inventory data, listing parts that were affected by the price discount. The Company has its own Sales Data.
 2. **Data Processing**: Using Power Query M language, the project:
