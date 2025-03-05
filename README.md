@@ -295,6 +295,15 @@ let
 in
     RemovedColumns
 ```
+
+**3.** After analyzing the data in Power Query, we obtained the cumulative sales value for each SKU, sorted by the most recent date for the target customer. The latest query results, filtered by inventory count and the SKUs requested by the customer, will be uploaded to the Power BI company server for further analysis and presentation in Excel.
+
+To access the queried table in Excel from Power BI Services:
+
+-Go to the Insert tab in Excel.
+-Click PivotTable and select From Power BI.
+-Choose the relevant dataset from the Power BI service and insert the table for further analysis.
+
 ## Methodology
 1. **Data Collection**: The customers provided their inventory data, listing parts that were affected by the price discount. The Company has its own Sales Data.
 2. **Data Processing**: Using Power Query M language, the project:
