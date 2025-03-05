@@ -6,6 +6,12 @@
 
 -[Data Sources](#data-sources)
 
+-[Data Cleaning & Preparation](#data-cleaning-&-preparation)
+
+-[Analysis](#analysis)
+
+-[Results & Findings](#results-&-findings)
+
 ### Project Overview
 ---
 This project evaluates the financial impact of a recent price reduction on a bulk of auto parts in the company's catalog. Due to agreements that allow customers to return purchased items, many have requested compensation for the devaluation of their inventory. To assess the extent of this impact, we processed customer-shared inventory data, focusing on discounted parts, and utilized M language to quantify the financial loss. Additionally, we compared customer inventory devaluation with our own sales data to gain a comprehensive understanding of the overall effect of the price reductions.
