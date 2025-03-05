@@ -12,7 +12,7 @@ This project analyzes the financial impact of a recent price discount on a bulk 
 1) 2018-2023 Sales Data : "sales_2018-2023.csv" file containing detailed accounting information about each sale made in years 2018-2023 by the company
 2) 2024 Sales Data : "sales_2024.csv" file containing detailed accounting information about each sale made in 2024 by the company
 3) 2024 Sales Data : "sales_2025.csv" file containing detailed accounting information about each sale made in 2025 by the company
-4) Customer Inventory Data : The file "flow.xlsx" contains customer inventory data, including details such as inventory count, previous price, discounted price, and various inventory flow metrics. The dataset includes columns for Line Code, Part Number, Short Description, In Stock Quantity, Old Price, New Price, Price Difference, Percentage Difference, Old Inventory Flow, New Inventory Flow, Inventory Difference, and Percentage Difference.
+4) Customer Inventory Data : The file "flow.xlsx" contains customer inventory data, including details such as inventory count, previous price, discounted price, and various inventory flow metrics. The dataset includes columns for `Line Code`, `Part Number`, `Short Description`, `In Stock Quantity`, `Old Price`, `New Price`, `Price Difference`, `Percentage Difference`, `Old Inventory Flow`, `New Inventory Flow`, `Inventory Difference`, and `Percentage Difference`.
 
 ### Tools
 - **Power Query (M Language)**: For data transformation and analysis.
