@@ -6,11 +6,13 @@
 
 -[Data Sources](#data-sources)
 
--[Data Cleaning & Preparation](#data-cleaning-&-preparation)
+-[Data Cleaning & Preparation](#data-cleaning--preparation)
 
 -[Analysis](#analysis)
 
--[Results & Findings](#results-&-findings)
+-[Results & Findings](#results--findings)
+
+-[Next Steps](#next-steps)
 
 ### Project Overview
 ---
