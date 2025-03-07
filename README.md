@@ -306,12 +306,12 @@ in
 
 ### Results & Findings
 ---
-After processing and analyzing the customer inventory data and sales records, we identified the cumulative sales value for each SKU, sorted by the most recent date for the target customer. The findings highlight the financial impact of price reductions and the extent of inventory devaluation.
+After processing and analyzing the customer inventory data and sales records, I identified the cumulative sales value for each SKU, sorted by the most recent date for the target customer. The findings highlight the financial impact of price reductions and the extent of inventory devaluation.
 
 #### **Key Findings:**
 - The cumulative sales quantity and amount for each SKU were calculated, ensuring accurate financial assessment.
 - The analysis considered only the SKUs impacted by the price reductions and matched them with customer inventory data.
-- By filtering the dataset based on inventory count and the requested SKU numbers, we ensured a focused approach to understanding compensation claims.
+- By filtering the dataset based on inventory count and the requested SKU numbers, I ensured a focused approach to understanding compensation claims.
 - The final dataset was structured and optimized for further reporting and visualization in Power BI.
 
 #### **Next Steps:**
