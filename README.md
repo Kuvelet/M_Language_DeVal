@@ -1,4 +1,4 @@
-# Inventory Devaluation Analysi
+# Inventory Devaluation Analysis
 
 ### Table of Contents
 ---
